@@ -2,7 +2,7 @@ package com.example.banquito2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+//import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -10,6 +10,13 @@ class gameStartActivity : AppCompatActivity() {
 
     lateinit var infoTextView : TextView
     val deck = mutableListOf<Cards>()
+    val players = mutableListOf<Players>()
+    val name = intent.getStringExtra("nameText")
+    val cardButton1 = findViewById<ImageView>(R.id.cardButton1)
+    val cardButton2 =findViewById<ImageView>(R.id.cardButton2)
+    val cardButton3 =findViewById<ImageView>(R.id.cardButton3)
+    val cardButton4 =findViewById<ImageView>(R.id.cardButton4)
+    val cardButton5 =findViewById<ImageView>(R.id.cardButton5)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,22 +24,38 @@ class gameStartActivity : AppCompatActivity() {
 
         infoTextView = findViewById(R.id.infoTextView)
 
-        val name = intent.getStringExtra("nameText")
-
-
         infoTextView.text = "Korten har delats up i fem högar. Högsta kortet blir BANKEN! $name vilken väljer du? "
 
-        val cardButton1 = findViewById<ImageView>(R.id.cardButton1)
-        val cardButton2 =findViewById<ImageView>(R.id.cardButton2)
-        val cardButton3 =findViewById<ImageView>(R.id.cardButton3)
-        val cardButton4 =findViewById<ImageView>(R.id.cardButton4)
-        val cardButton5 =findViewById<ImageView>(R.id.cardButton5)
-
-        createDeck()
 
 
+        // createPlayers()
+        //createDeck()
+        //deck.shuffle()
+        //assignCardsToButtons()
 
+    }
 
+    fun assignCardsToButtons() {
+        cardButton1.setOnClickListener {
+            val button1Card = deck[1]
+            cardButton1.setImageResource(button1Card.image)
+        }
+        cardButton2.setOnClickListener {
+            val button2Card = deck[2]
+            cardButton2.setImageResource(button2Card.image)
+        }
+        cardButton3.setOnClickListener {
+            val button3Card = deck[3]
+            cardButton3.setImageResource(button3Card.image)
+        }
+        cardButton4.setOnClickListener {
+            val button4Card = deck[4]
+            cardButton4.setImageResource(button4Card.image)
+        }
+        cardButton5.setOnClickListener {
+            val button5Card = deck[5]
+            cardButton5.setImageResource(button5Card.image)
+        }
 
     }
 
@@ -145,7 +168,19 @@ class gameStartActivity : AppCompatActivity() {
         val card51 = Cards(R.drawable.two_d, 2, "diamonds")
         deck.add(card51)
 
+    }
 
+    fun createPlayers() {
+        val player1 = Players("$name ", 100, false)
+        players.add(player1)
+        val player2 = Players("Victor ", 100, false)
+        players.add(player2)
+        val player3 = Players("Jessica ", 100, false)
+        players.add(player3)
+        val player4 = Players("Lionel ", 100, false)
+        players.add(player4)
+        val player5 = Players("Andrea ", 100, false)
+        players.add(player5)
 
     }
 

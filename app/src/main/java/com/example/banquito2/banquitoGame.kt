@@ -25,9 +25,6 @@ class banquitoGame : AppCompatActivity() {
         playerTextView.text = "Fem spelare är med och spelar med 100 'banquitos' som insats"
         writeNameTextView.text = "Skriv in ditt namn!"
 
-
-
-        //val name =nameText.toIntOrNull()
         val button =findViewById<Button>(R.id.nextButton)
 
         button.setOnClickListener {
@@ -39,6 +36,6 @@ class banquitoGame : AppCompatActivity() {
 
         }
 
-
     }
+
 }

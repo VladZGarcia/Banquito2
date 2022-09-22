@@ -17,7 +17,7 @@ class banquitoExplain : AppCompatActivity() {
         banquitoXTextView = findViewById(R.id.banquitoXTextView)
         val button =findViewById<Button>(R.id.Button)
 
-        banquitoXTextView.text = "Banquito är ett chansspel som går ut på att få ett högre kortvärde än 'banken' och på det sättet dubla sin insats. 'Banken' blir den spelaren som får högsta kortet innan första omgången, får en spelare ett 'ess' under spelets gång blir han 'banken' om inte 'banken' också har ett 'ess'. Banken vinner alltid vid lika kortvärde."
+        banquitoXTextView.text = "Banquito är ett chansspel som går ut på att få ett högre kortvärde än 'banken' och på det sättet dubla sin insats. 'Banken' blir den spelaren som får högsta kortet innan första omgången, får en spelare ett 'ess' under spelets gång blir den spelaren 'banken' om inte 'banken' också har ett 'ess'. Banken vinner alltid vid lika kortvärde."
 
 
 
