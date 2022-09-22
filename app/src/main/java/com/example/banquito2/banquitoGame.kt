@@ -30,7 +30,7 @@ class banquitoGame : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            val intent = Intent( this, gameStartActivity::class.java)
+            val intent = Intent( this, GameStartActivity::class.java)
             intent.putExtra("nameText", nameText)
 
             startActivity(intent)
