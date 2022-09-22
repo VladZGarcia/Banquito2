@@ -10,7 +10,7 @@
         android:id="@+id/playerTextView"
         android:layout_width="239dp"
         android:layout_height="126dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="172dp"
         android:autoSizeTextType="uniform"
         android:autoText="false"
         android:justificationMode="inter_word"
@@ -31,8 +31,10 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/nameView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/playerTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/nameView"
@@ -47,6 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playerTextView"
+        app:layout_constraintVertical_bias="0.446"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button

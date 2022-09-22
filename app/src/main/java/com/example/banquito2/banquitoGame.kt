@@ -3,6 +3,7 @@ package com.example.banquito2
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -24,15 +25,16 @@ class banquitoGame : AppCompatActivity() {
         playerTextView.text = "Fem spelare är med och spelar med 100 'banquitos' som insats"
         writeNameTextView.text = "Skriv in ditt namn!"
 
-        val nameText = nameView.text.toString()
+
+
         //val name =nameText.toIntOrNull()
         val button =findViewById<Button>(R.id.nextButton)
 
         button.setOnClickListener {
-
-            val intent = Intent( this, GameStartActivity::class.java)
-            intent.putExtra("nameText", nameText)
-
+            val nameText = nameView.text.toString()
+            val intent = Intent( this, gameStartActivity::class.java)
+            Log.d("!!!","nameText = $nameText " )
+            intent.putExtra("nameText",nameText)
             startActivity(intent)
 
         }
