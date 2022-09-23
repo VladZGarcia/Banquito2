@@ -1,12 +1,15 @@
 package com.example.banquito2
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.TextView.OnEditorActionListener
+import androidx.appcompat.app.AppCompatActivity
+
 
 class banquitoGame : AppCompatActivity() {
 
@@ -26,9 +29,19 @@ class banquitoGame : AppCompatActivity() {
         writeNameTextView.text = "Skriv in ditt namn!"
 
         val button =findViewById<Button>(R.id.nextButton)
-
+        nameView.setOnEditorActionListener(OnEditorActionListener { v, id, event ->
+            if (id == EditorInfo.IME_ACTION_DONE) {
+                val nameText = nameView.text.toString() ?: null
+                val intent = Intent( this, gameStartActivity::class.java)
+                Log.d("!!!","nameText = $nameText " )
+                intent.putExtra("nameText",nameText)
+                startActivity(intent)
+                //do something here
+                true
+            } else false
+        })
         button.setOnClickListener {
-            val nameText = nameView.text.toString()
+            val nameText = nameView.text.toString() ?: null
             val intent = Intent( this, gameStartActivity::class.java)
             Log.d("!!!","nameText = $nameText " )
             intent.putExtra("nameText",nameText)
