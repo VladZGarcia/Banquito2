@@ -1,27 +1,29 @@
 package com.example.banquito2
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.view.inputmethod.EditorInfo
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 
 class gameStartActivity : AppCompatActivity() {
 
     lateinit var infoTextView : TextView
+    lateinit var betView : EditText
     val deck = mutableListOf<Cards>()
     val players = mutableListOf<Players>()
-    var player1 = Players("",100,false)
+    var player1 = Players("",100,false,  0)
     val piles = mutableListOf<Cards>()
     var valdPile = 0
     var name : String? =""
-    //var randomCard1 = 0
-    //var randomCard2 = 0
-    //var randomCard3 = 0
-    //var randomCard4 = 0
+    var firstRound = true
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,7 @@ class gameStartActivity : AppCompatActivity() {
             val cardButton3 = findViewById<ImageView>(R.id.cardButton3)
             val cardButton4 = findViewById<ImageView>(R.id.cardButton4)
             val cardButton5 = findViewById<ImageView>(R.id.cardButton5)
-            val continueButton = findViewById<Button>(R.id.continueButton)
+            val betEditText = findViewById<EditText>(R.id.betEditText)
 
 
              name = intent.getStringExtra("nameText")
@@ -48,19 +50,19 @@ class gameStartActivity : AppCompatActivity() {
         createDeck()
         deck.shuffle()
         players.shuffle()
-        val button1Card = deck[1]
+        var button1Card = deck[1]
         button1Card.pile = 1
         piles.add(button1Card)
-        val button2Card = deck[2]
+        var button2Card = deck[2]
         button2Card.pile = 2
         piles.add(button2Card)
-        val button3Card = deck[3]
+        var button3Card = deck[3]
         button3Card.pile = 3
         piles.add(button3Card)
-        val button4Card = deck[4]
+        var button4Card = deck[4]
         button4Card.pile = 4
         piles.add(button4Card)
-        val button5Card = deck[5]
+        var button5Card = deck[5]
         button5Card.pile = 5
         piles.add(button5Card)
 
@@ -74,6 +76,10 @@ class gameStartActivity : AppCompatActivity() {
             cardButton1.startAnimation(animation1)
             cardButton1.setImageResource(button1Card.image)
             valdPile = 0
+            if(firstRound){
+                player1.bank = true
+                firstRound = false
+            }
             if(piles.size == 5) {
                 nextPlayerChoice()
 
@@ -83,9 +89,7 @@ class gameStartActivity : AppCompatActivity() {
                  cardButton5.callOnClick()
             }
 
-            continueButton.setOnClickListener {
 
-            }
         }
         cardButton2.setOnClickListener {
 
@@ -93,6 +97,10 @@ class gameStartActivity : AppCompatActivity() {
             cardButton2.startAnimation(animation2)
             cardButton2.setImageResource(button2Card.image)
             valdPile = 1
+            if(firstRound){
+                player1.bank = true
+                firstRound = false
+            }
 
             if(piles.size == 5) {
                 nextPlayerChoice()
@@ -110,6 +118,10 @@ class gameStartActivity : AppCompatActivity() {
             cardButton3.startAnimation(animation3)
             cardButton3.setImageResource(button3Card.image)
             valdPile = 2
+            if(firstRound){
+                player1.bank = true
+                firstRound = false
+            }
 
             if(piles.size == 5) {
                 nextPlayerChoice()
@@ -126,6 +138,10 @@ class gameStartActivity : AppCompatActivity() {
             cardButton4.startAnimation(animation4)
             cardButton4.setImageResource(button4Card.image)
             valdPile = 3
+            if(firstRound){
+                player1.bank = true
+                firstRound = false
+            }
 
             if(piles.size == 5) {
                 nextPlayerChoice()
@@ -141,6 +157,10 @@ class gameStartActivity : AppCompatActivity() {
             cardButton5.startAnimation(animation5)
             cardButton5.setImageResource(button5Card.image)
             valdPile = 4
+            if(firstRound){
+                player1.bank = true
+                firstRound = false
+            }
 
             if (piles.size == 5) {
                 nextPlayerChoice()
@@ -151,34 +171,51 @@ class gameStartActivity : AppCompatActivity() {
             cardButton2.callOnClick()
         }
         }
+        betEditText.setOnEditorActionListener(TextView.OnEditorActionListener { v, id, event ->
+            if (id == EditorInfo.IME_ACTION_DONE) {
+                var betInput = betEditText.text.toString() ?: null
+                    var bet = betInput!!.toInt() 
+                //val intent = Intent(this, gameStartActivity::class.java)
+                Log.d("!!!", "nameText = $bet ")
+                //intent.putExtra("betText", betText)
+                //startActivity(intent)
+                //do something here
+                deck.shuffle()
+                players.shuffle()
+                button1Card = deck[1]
+                button1Card.pile = 1
+                piles.add(button1Card)
+                button2Card = deck[2]
+                button2Card.pile = 2
+                piles.add(button2Card)
+                button3Card = deck[3]
+                button3Card.pile = 3
+                piles.add(button3Card)
+                button4Card = deck[4]
+                button4Card.pile = 4
+                piles.add(button4Card)
+                button5Card = deck[5]
+                button5Card.pile = 5
+                piles.add(button5Card)
+                true
+            } else false
+        })
 
 
     }
-    fun createpile() {
+    fun createPlayers() {
+//
+        val player2 = Players("Victor ", 100, false)
+        players.add(player2)
+        val player3 = Players("Jessica ", 100, false)
+        players.add(player3)
+        val player4 = Players("Lionel ", 100, false)
+        players.add(player4)
+        val player5 = Players("Andrea ", 100, false)
+        players.add(player5)
+    }
 
-        val button1Card = deck[1]
-        piles.add(button1Card)
-        val button2Card = deck[2]
-        piles.add(button2Card)
-        val button3Card = deck[3]
-        piles.add(button3Card)
-        val button4Card = deck[4]
-        piles.add(button4Card)
-        val button5Card = deck[5]
-        piles.add(button5Card)
-            }
 
-   fun createPlayers() {
-
-       val player2 = Players("Victor ", 100, false)
-       players.add(player2)
-       val player3 = Players("Jessica ", 100, false)
-       players.add(player3)
-       val player4 = Players("Lionel ", 100, false)
-       players.add(player4)
-       val player5 = Players("Andrea ", 100, false)
-       players.add(player5)
-   }
     fun removePile() : Cards {
        //if(piles.isEmpty() ) {
        //    initializeWords()
@@ -190,17 +227,44 @@ class gameStartActivity : AppCompatActivity() {
        return newPile
    }
     fun nextPlayerChoice() {
+        var resultText = ""
+        var highestVal = piles[valdPile]
         piles.removeAt(valdPile)
+
         valdPile += 1
         infoTextView.text = "$name du valde Korthög $valdPile"
 
             for (player in players) {
 
                 var newPile = removePile()
-                var resultText =  "${infoTextView.text}\n${player.name} väljer korthög ${newPile.pile}"
+                 resultText =  "${infoTextView.text}\n${player.name} väljer korthög ${newPile.pile}"
+                infoTextView.text = resultText
+                if(highestVal.value < newPile.value){
+                    player.bank = true
+                    player1.bank = false
+                    highestVal = newPile
+                }
+
+
+
+            }
+        if(!player1.bank){
+            for(player in players) {
+                if(player.bank)
+                    resultText =  "${infoTextView.text}\n${player.name} har högsta kort och är Banken"
                 infoTextView.text = resultText
 
             }
+             if(player1.bank){
+                resultText =  "${infoTextView.text}\n${player1.name} har högsta kort och är Banken"
+                infoTextView.text = resultText
+
+            }
+
+
+        }
+
+
 
     }
     fun createDeck() {

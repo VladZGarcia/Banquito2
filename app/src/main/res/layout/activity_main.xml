@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/greenpokertable"
     tools:context=".MainActivity">
 
     <TextView
@@ -14,9 +15,12 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
         android:autoSizeTextType="none"
+        android:gravity="center_vertical"
         android:justificationMode="inter_word"
         android:text="Play Banquito!"
         android:textAlignment="center"
+        android:textColor="#FCE4EC"
+        android:textColorHighlight="#F06292"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

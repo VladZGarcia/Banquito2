@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/a_s">
+    android:background="@drawable/greenpokertable"
+    android:scaleType="centerCrop"
+    android:gravity="top"
     tools:context=".gameStartActivity">
 
     <ImageButton
@@ -29,10 +31,10 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/cardButton5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintHorizontal_bias="0.985"
         app:layout_constraintStart_toEndOf="@+id/cardButton1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.675"
+        app:layout_constraintVertical_bias="0.847"
         app:srcCompat="@drawable/peter_river"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -46,7 +48,7 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.978"
+        app:layout_constraintHorizontal_bias="0.984"
         app:layout_constraintStart_toEndOf="@+id/cardButton4"
         app:srcCompat="@drawable/peter_river"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
@@ -61,20 +63,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.704"
+        app:layout_constraintVertical_bias="0.766"
         app:srcCompat="@drawable/peter_river"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/infoTextView"
-        android:layout_width="306dp"
-        android:layout_height="210dp"
-        android:layout_marginTop="36dp"
+        android:layout_width="328dp"
+        android:layout_height="287dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
         android:autoSizeTextType="none"
         android:justificationMode="inter_word"
+        android:textColor="#FCE4EC"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -88,20 +93,9 @@
         app:layout_constraintBottom_toTopOf="@+id/cardButton4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.675"
+        app:layout_constraintVertical_bias="0.847"
         app:srcCompat="@drawable/peter_river"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <Button
-        android:id="@+id/continueButton"
-        android:layout_width="80dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="220dp"
-        android:text="-->"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/pileTextNumber2"
@@ -115,6 +109,7 @@
         android:scaleType="center"
         android:text="2"
         android:textAlignment="center"
+        android:textColor="#FCE4EC"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,8 +121,8 @@
 
     <EditText
         android:id="@+id/pileTextNumber5"
-        android:layout_width="32dp"
-        android:layout_height="39dp"
+        android:layout_width="35dp"
+        android:layout_height="43dp"
         android:autoSizeTextType="uniform"
         android:ems="10"
         android:hint="5"
@@ -136,6 +131,7 @@
         android:scaleType="center"
         android:text="5"
         android:textAlignment="center"
+        android:textColor="#FCE4EC"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -157,6 +153,7 @@
         android:scaleType="center"
         android:text="1"
         android:textAlignment="center"
+        android:textColor="#FCE4EC"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -178,6 +175,7 @@
         android:scaleType="center"
         android:text="3"
         android:textAlignment="center"
+        android:textColor="#FCE4EC"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -189,8 +187,8 @@
 
     <EditText
         android:id="@+id/pileTextNumber3"
-        android:layout_width="40dp"
-        android:layout_height="37dp"
+        android:layout_width="38dp"
+        android:layout_height="42dp"
         android:autoSizeTextType="uniform"
         android:ems="10"
         android:hint="4"
@@ -199,6 +197,7 @@
         android:scaleType="center"
         android:text="4"
         android:textAlignment="center"
+        android:textColor="#FCE4EC"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -207,5 +206,19 @@
         app:layout_constraintTop_toBottomOf="@+id/cardButton4"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/betEditText"
+        android:layout_width="49dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:inputType="number"
+        android:text="bet"
+        android:textAlignment="center"
+        android:textColor="#FCE4EC"
+        android:textColorHint="#FCE4EC"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

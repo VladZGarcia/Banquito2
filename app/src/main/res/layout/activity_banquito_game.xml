@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/greenpokertable"
     tools:context=".banquitoGame">
 
     <TextView
@@ -16,6 +17,7 @@
         android:justificationMode="inter_word"
         android:text="TextView"
         android:textAlignment="center"
+        android:textColor="#FCE4EC"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="TextView"
+        android:textColor="#FCE4EC"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/nameView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,11 +43,13 @@
         android:id="@+id/nameView"
         android:layout_width="197dp"
         android:layout_height="50dp"
-        android:imeOptions="actionDone"
         android:ems="10"
         android:gravity="center"
+        android:imeOptions="actionDone"
         android:inputType="textPersonName"
         android:justificationMode="inter_word"
+        android:textColor="#FCE4EC"
+        android:textColorHint="#FCE4EC"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

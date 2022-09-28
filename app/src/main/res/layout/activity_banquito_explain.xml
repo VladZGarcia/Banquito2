@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/greenpokertable"
     tools:context=".banquitoExplain">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="305dp"
         android:layout_marginTop="100dp"
         android:justificationMode="inter_word"
+        android:textColor="#FCE4EC"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Button"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,6 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="REGLER"
+        android:textColor="#FCE4EC"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/banquitoXTextView"
         app:layout_constraintEnd_toEndOf="parent"
