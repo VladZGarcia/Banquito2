@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/a_s">
     tools:context=".gameStartActivity">
 
     <ImageButton
@@ -101,5 +102,110 @@
         app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/pileTextNumber2"
+        android:layout_width="36dp"
+        android:layout_height="43dp"
+        android:autoSizeTextType="uniform"
+        android:ems="10"
+        android:hint="2"
+        android:inputType="number"
+        android:justificationMode="none"
+        android:scaleType="center"
+        android:text="2"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardButton2"
+        app:layout_constraintVertical_bias="0.035"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/pileTextNumber5"
+        android:layout_width="32dp"
+        android:layout_height="39dp"
+        android:autoSizeTextType="uniform"
+        android:ems="10"
+        android:hint="5"
+        android:inputType="number"
+        android:justificationMode="none"
+        android:scaleType="center"
+        android:text="5"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardButton5"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/pileTextNumber"
+        android:layout_width="31dp"
+        android:layout_height="38dp"
+        android:autoSizeTextType="uniform"
+        android:ems="10"
+        android:hint="1"
+        android:inputType="number"
+        android:justificationMode="none"
+        android:scaleType="center"
+        android:text="1"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardButton1"
+        app:layout_constraintVertical_bias="0.035"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/pileTextNumber4"
+        android:layout_width="31dp"
+        android:layout_height="40dp"
+        android:autoSizeTextType="uniform"
+        android:ems="10"
+        android:hint="3"
+        android:inputType="number"
+        android:justificationMode="none"
+        android:scaleType="center"
+        android:text="3"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardButton3"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <EditText
+        android:id="@+id/pileTextNumber3"
+        android:layout_width="40dp"
+        android:layout_height="37dp"
+        android:autoSizeTextType="uniform"
+        android:ems="10"
+        android:hint="4"
+        android:inputType="number"
+        android:justificationMode="none"
+        android:scaleType="center"
+        android:text="4"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardButton4"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

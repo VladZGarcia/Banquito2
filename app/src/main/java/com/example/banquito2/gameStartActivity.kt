@@ -2,6 +2,7 @@ package com.example.banquito2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
@@ -16,6 +17,7 @@ class gameStartActivity : AppCompatActivity() {
     var player1 = Players("",100,false)
     val piles = mutableListOf<Cards>()
     var valdPile = 0
+    var name : String? =""
     //var randomCard1 = 0
     //var randomCard2 = 0
     //var randomCard3 = 0
@@ -33,7 +35,7 @@ class gameStartActivity : AppCompatActivity() {
             val continueButton = findViewById<Button>(R.id.continueButton)
 
 
-            val name = intent.getStringExtra("nameText")
+             name = intent.getStringExtra("nameText")
 
             infoTextView = findViewById(R.id.infoTextView)
 
@@ -47,15 +49,23 @@ class gameStartActivity : AppCompatActivity() {
         deck.shuffle()
         players.shuffle()
         val button1Card = deck[1]
+        button1Card.pile = 1
         piles.add(button1Card)
         val button2Card = deck[2]
+        button2Card.pile = 2
         piles.add(button2Card)
         val button3Card = deck[3]
+        button3Card.pile = 3
         piles.add(button3Card)
         val button4Card = deck[4]
+        button4Card.pile = 4
         piles.add(button4Card)
         val button5Card = deck[5]
+        button5Card.pile = 5
         piles.add(button5Card)
+
+        //createpile()
+
 
         //  assignCardsToButtons()
         cardButton1.setOnClickListener {
@@ -64,10 +74,16 @@ class gameStartActivity : AppCompatActivity() {
             cardButton1.startAnimation(animation1)
             cardButton1.setImageResource(button1Card.image)
             valdPile = 0
+            if(piles.size == 5) {
+                nextPlayerChoice()
+
+                 cardButton2.callOnClick()
+                 cardButton3.callOnClick()
+                 cardButton4.callOnClick()
+                 cardButton5.callOnClick()
+            }
 
             continueButton.setOnClickListener {
-
-
 
             }
         }
@@ -77,7 +93,16 @@ class gameStartActivity : AppCompatActivity() {
             cardButton2.startAnimation(animation2)
             cardButton2.setImageResource(button2Card.image)
             valdPile = 1
-            nextPlayerChoice()
+
+            if(piles.size == 5) {
+                nextPlayerChoice()
+
+                 cardButton1.callOnClick()
+                 cardButton3.callOnClick()
+                 cardButton4.callOnClick()
+                 cardButton5.callOnClick()
+            }
+
         }
         cardButton3.setOnClickListener {
 
@@ -85,7 +110,15 @@ class gameStartActivity : AppCompatActivity() {
             cardButton3.startAnimation(animation3)
             cardButton3.setImageResource(button3Card.image)
             valdPile = 2
-            nextPlayerChoice()
+
+            if(piles.size == 5) {
+                nextPlayerChoice()
+
+                cardButton1.callOnClick()
+                cardButton2.callOnClick()
+                cardButton4.callOnClick()
+                cardButton5.callOnClick()
+            }
         }
         cardButton4.setOnClickListener {
 
@@ -93,42 +126,47 @@ class gameStartActivity : AppCompatActivity() {
             cardButton4.startAnimation(animation4)
             cardButton4.setImageResource(button4Card.image)
             valdPile = 3
-            nextPlayerChoice()
+
+            if(piles.size == 5) {
+                nextPlayerChoice()
+
+                 cardButton1.callOnClick()
+                 cardButton3.callOnClick()
+                 cardButton2.callOnClick()
+                 cardButton5.callOnClick()
+            }
         }
         cardButton5.setOnClickListener {
-
-            val animation5 =AnimationUtils.loadAnimation(this, R.anim.bounce)
+            val animation5 = AnimationUtils.loadAnimation(this, R.anim.bounce)
             cardButton5.startAnimation(animation5)
             cardButton5.setImageResource(button5Card.image)
             valdPile = 4
-            nextPlayerChoice()
+
+            if (piles.size == 5) {
+                nextPlayerChoice()
+
+            cardButton1.callOnClick()
+            cardButton3.callOnClick()
+            cardButton4.callOnClick()
+            cardButton2.callOnClick()
+        }
         }
 
 
     }
+    fun createpile() {
 
-//  fun assignCardsToButtons() {
-//      cardButton1.setOnClickListener {
-//          val button1Card = deck[1]
-//          cardButton1.setImageResource(button1Card.image)
-//      }
-//      cardButton2.setOnClickListener {
-//          val button2Card = deck[2]
-//          cardButton2.setImageResource(button2Card.image)
-//      }
-//      cardButton3.setOnClickListener {
-//          val button3Card = deck[3]
-//          cardButton3.setImageResource(button3Card.image)
-//      }
-//      cardButton4.setOnClickListener {
-//          val button4Card = deck[4]
-//          cardButton4.setImageResource(button4Card.image)
-//      }
-//      cardButton5.setOnClickListener {
-//          val button5Card = deck[5]
-//          cardButton5.setImageResource(button5Card.image)
-//      }
-//  }
+        val button1Card = deck[1]
+        piles.add(button1Card)
+        val button2Card = deck[2]
+        piles.add(button2Card)
+        val button3Card = deck[3]
+        piles.add(button3Card)
+        val button4Card = deck[4]
+        piles.add(button4Card)
+        val button5Card = deck[5]
+        piles.add(button5Card)
+            }
 
    fun createPlayers() {
 
@@ -141,17 +179,30 @@ class gameStartActivity : AppCompatActivity() {
        val player5 = Players("Andrea ", 100, false)
        players.add(player5)
    }
+    fun removePile() : Cards {
+       //if(piles.isEmpty() ) {
+       //    initializeWords()
+       //}
+
+       val rndPile = (0 until piles.size).random()
+       val newPile = piles.removeAt(rndPile)
+
+       return newPile
+   }
     fun nextPlayerChoice() {
+        piles.removeAt(valdPile)
+        valdPile += 1
+        infoTextView.text = "$name du valde Korthög $valdPile"
 
-        if( valdPile == 0) {
-            for (player in 0..3) {
-                for (pile in 1..4) {
+            for (player in players) {
 
-                    infoTextView.text = "${players[player].name} väljer korthög $pile"
-                }
+                var newPile = removePile()
+                var resultText =  "${infoTextView.text}\n${player.name} väljer korthög ${newPile.pile}"
+                infoTextView.text = resultText
+
             }
-        }
-        }
+
+    }
     fun createDeck() {
         val card = Cards(R.drawable.a_s, 14, "spades")
         deck.add(card)
