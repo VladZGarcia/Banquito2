@@ -80,15 +80,15 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton5.callOnClick()
                 }
                 firstRound = false
-                infoTextView.setOnClickListener {
-                    infoTextView.text = "Dags att spela om Banquitos!"
-                    cardButton1.setImageResource(android.R.color.transparent)
-                    cardButton2.setImageResource(android.R.color.transparent)
-                    cardButton3.setImageResource(android.R.color.transparent)
-                    cardButton4.setImageResource(android.R.color.transparent)
-                    cardButton5.setImageResource(android.R.color.transparent)
-                    
-                }
+                //infoTextView.setOnClickListener {
+                //    infoTextView.text = "Dags att spela om Banquitos!"
+                //    cardButton1.setImageResource(R.drawable.peter_river)
+                //    cardButton2.setImageResource(R.drawable.peter_river)
+                //    cardButton3.setImageResource(R.drawable.peter_river)
+                //    cardButton4.setImageResource(R.drawable.peter_river)
+                //    cardButton5.setImageResource(R.drawable.peter_river)
+//
+                //}
             }
 
             cardButton2.setOnClickListener {
@@ -106,15 +106,15 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton5.callOnClick()
                 }
                 firstRound = false
-                infoTextView.setOnClickListener {
-                    infoTextView.text = "Dags att spela om Banquitos!"
-                    cardButton1.setImageResource(android.R.color.transparent)
-                    cardButton2.setImageResource(android.R.color.transparent)
-                    cardButton3.setImageResource(android.R.color.transparent)
-                    cardButton4.setImageResource(android.R.color.transparent)
-                    cardButton5.setImageResource(android.R.color.transparent)
+               //infoTextView.setOnClickListener {
+               //    infoTextView.text = "Dags att spela om Banquitos!"
+               //    cardButton1.setImageResource(R.drawable.peter_river)
+               //    cardButton2.setImageResource(R.drawable.peter_river)
+               //    cardButton3.setImageResource(R.drawable.peter_river)
+               //    cardButton4.setImageResource(R.drawable.peter_river)
+               //    cardButton5.setImageResource(R.drawable.peter_river)
 
-                }
+               //}
             }
             cardButton3.setOnClickListener {
                 val animation3 =AnimationUtils.loadAnimation(this, R.anim.bounce)
@@ -131,15 +131,15 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton5.callOnClick()
                 }
                 firstRound = false
-                infoTextView.setOnClickListener {
-                    infoTextView.text = "Dags att spela om Banquitos!"
-                    cardButton1.setImageResource(android.R.color.transparent)
-                    cardButton2.setImageResource(android.R.color.transparent)
-                    cardButton3.setImageResource(android.R.color.transparent)
-                    cardButton4.setImageResource(android.R.color.transparent)
-                    cardButton5.setImageResource(android.R.color.transparent)
-
-                }
+               // infoTextView.setOnClickListener {
+               //     infoTextView.text = "Dags att spela om Banquitos!"
+               //     cardButton1.setImageResource(R.drawable.peter_river)
+               //     cardButton2.setImageResource(R.drawable.peter_river)
+               //     cardButton3.setImageResource(R.drawable.peter_river)
+               //     cardButton4.setImageResource(R.drawable.peter_river)
+               //     cardButton5.setImageResource(R.drawable.peter_river)
+//
+               // }
             }
             cardButton4.setOnClickListener {
                 val animation4 =AnimationUtils.loadAnimation(this, R.anim.bounce)
@@ -156,15 +156,15 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton5.callOnClick()
                 }
                 firstRound = false
-                infoTextView.setOnClickListener {
-                    infoTextView.text = "Dags att spela om Banquitos!"
-                    cardButton1.setImageResource(android.R.color.transparent)
-                    cardButton2.setImageResource(android.R.color.transparent)
-                    cardButton3.setImageResource(android.R.color.transparent)
-                    cardButton4.setImageResource(android.R.color.transparent)
-                    cardButton5.setImageResource(android.R.color.transparent)
-
-                }
+                //infoTextView.setOnClickListener {
+                //    infoTextView.text = "Dags att spela om Banquitos!"
+                //    cardButton1.setImageResource(R.drawable.peter_river)
+                //    cardButton2.setImageResource(R.drawable.peter_river)
+                //    cardButton3.setImageResource(R.drawable.peter_river)
+                //    cardButton4.setImageResource(R.drawable.peter_river)
+                //    cardButton5.setImageResource(R.drawable.peter_river)
+//
+                //}
             }
             cardButton5.setOnClickListener {
                 val animation5 = AnimationUtils.loadAnimation(this, R.anim.bounce)
@@ -181,32 +181,40 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton2.callOnClick()
                 }
                 firstRound = false
-                infoTextView.setOnClickListener {
-                    infoTextView.text = "Dags att spela om Banquitos!"
-                    cardButton1.setImageResource(android.R.color.transparent)
-                    cardButton2.setImageResource(android.R.color.transparent)
-                    cardButton3.setImageResource(android.R.color.transparent)
-                    cardButton4.setImageResource(android.R.color.transparent)
-                    cardButton5.setImageResource(android.R.color.transparent)
 
-                }
 
             }
 
 
         }
         // Betting time!!
+        infoTextView.setOnClickListener {
+            infoTextView.text = "Dags att spela om Banquitos!\n Hur mycket Banquitos vill du spela om?"
+            cardButton1.setImageResource(R.drawable.peter_river)
+            cardButton2.setImageResource(R.drawable.peter_river)
+            cardButton3.setImageResource(R.drawable.peter_river)
+            cardButton4.setImageResource(R.drawable.peter_river)
+            cardButton5.setImageResource(R.drawable.peter_river)
+
+        }
 
 
             while (bet != 0) {
 
                 infoTextView.text = "Dags att spela!\n Hur mycket vill du spela om?"
 
-                cardButton1.setImageResource(android.R.color.transparent)
-                cardButton2.setImageResource(android.R.color.transparent)
-                cardButton3.setImageResource(android.R.color.transparent)
-                cardButton4.setImageResource(android.R.color.transparent)
-                cardButton5.setImageResource(android.R.color.transparent)
+                cardButton1.setImageResource(R.drawable.peter_river)
+                cardButton2.setImageResource(R.drawable.peter_river)
+                cardButton3.setImageResource(R.drawable.peter_river)
+                cardButton4.setImageResource(R.drawable.peter_river)
+                cardButton5.setImageResource(R.drawable.peter_river)
+                betEditText.setOnEditorActionListener(TextView.OnEditorActionListener { v, id, event ->
+                    if (id == EditorInfo.IME_ACTION_DONE) {
+                        var betInput = betEditText.text.toString() ?: null
+                        bet = betInput!!.toInt()
+                        true
+                    } else false
+                })
                 var button1Card = deck.newRndCard()
                 button1Card.pile = 1
                 piles.add(button1Card)
@@ -223,13 +231,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 button5Card.pile = 5
                 piles.add(button5Card)
 
-                betEditText.setOnEditorActionListener(TextView.OnEditorActionListener { v, id, event ->
-                    if (id == EditorInfo.IME_ACTION_DONE) {
-                        var betInput = betEditText.text.toString() ?: null
-                        bet = betInput!!.toInt()
-                        true
-                    } else false
-                })
+
 
                 cardButton1.setOnClickListener {
                     val animation1 = AnimationUtils.loadAnimation(this, R.anim.bounce)
@@ -298,17 +300,6 @@ class BanquitoStartActivity : AppCompatActivity() {
                     }
                 }
             }
-
-
-
-
-
-
-
-
-
-
-
     }
 
     fun removePile() : Cards {
@@ -352,6 +343,8 @@ class BanquitoStartActivity : AppCompatActivity() {
 
         resultText =  "${infoTextView.text}\n${highestVal.name} har högsta kort och är Banken\n Tryck på skärmen!"
         infoTextView.text = resultText
+
+        return
 
 
     }
