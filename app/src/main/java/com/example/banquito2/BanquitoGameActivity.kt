@@ -11,7 +11,7 @@ import android.widget.TextView.OnEditorActionListener
 import androidx.appcompat.app.AppCompatActivity
 
 
-class banquitoGame : AppCompatActivity() {
+class BanquitoGameActivity : AppCompatActivity() {
 
     lateinit var playerTextView : TextView
     lateinit var writeNameTextView : TextView
@@ -32,7 +32,7 @@ class banquitoGame : AppCompatActivity() {
         nameView.setOnEditorActionListener(OnEditorActionListener { v, id, event ->
             if (id == EditorInfo.IME_ACTION_DONE) {
                 val nameText = nameView.text.toString() ?: null
-                val intent = Intent( this, gameStartActivity::class.java)
+                val intent = Intent( this, BanquitoStartActivity::class.java)
                 Log.d("!!!","nameText = $nameText " )
                 intent.putExtra("nameText",nameText)
                 startActivity(intent)
@@ -42,7 +42,7 @@ class banquitoGame : AppCompatActivity() {
         })
         button.setOnClickListener {
             val nameText = nameView.text.toString() ?: null
-            val intent = Intent( this, gameStartActivity::class.java)
+            val intent = Intent( this, BanquitoStartActivity::class.java)
             Log.d("!!!","nameText = $nameText " )
             intent.putExtra("nameText",nameText)
             startActivity(intent)

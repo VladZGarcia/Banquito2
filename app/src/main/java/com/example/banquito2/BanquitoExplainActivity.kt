@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 
-class banquitoExplain : AppCompatActivity() {
+class BanquitoExplainActivity : AppCompatActivity() {
 
     lateinit var banquitoXTextView : TextView
 
@@ -17,15 +17,12 @@ class banquitoExplain : AppCompatActivity() {
         banquitoXTextView = findViewById(R.id.banquitoXTextView)
         val button =findViewById<Button>(R.id.Button)
 
-        banquitoXTextView.text = "Banquito är ett chansspel som går ut på att få ett högre kortvärde än 'banken' och på det sättet dubla sin insats. 'Banken' blir den spelaren som får högsta kortet innan första omgången, får en spelare ett 'ess' under spelets gång blir den spelaren 'banken' om inte 'banken' också har ett 'ess'. Banken vinner alltid vid lika kortvärde."
-
-
 
 
 
         button.setOnClickListener {
 
-            val intent = Intent( this, banquitoGame::class.java)
+            val intent = Intent( this, BanquitoGameActivity::class.java)
             startActivity(intent)
 
         }
