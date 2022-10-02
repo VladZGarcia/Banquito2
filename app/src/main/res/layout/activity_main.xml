@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/banquitoTextView"
-        android:layout_width="298dp"
-        android:layout_height="570dp"
+        android:layout_width="312dp"
+        android:layout_height="466dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
@@ -18,7 +18,7 @@
         android:gravity="center_vertical"
         android:justificationMode="inter_word"
         android:text="Play Banquito!"
-        android:textAlignment="center"
+        android:textAlignment="gravity"
         android:textColor="#FCE4EC"
         android:textColorHighlight="#F06292"
         android:textSize="24sp"
@@ -39,8 +39,9 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banquitoTextView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.453" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
