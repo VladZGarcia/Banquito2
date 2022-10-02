@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
 
-            banquitoTextView.text = "Banquito är ett chansspel som går ut på att få ett högre kortvärde än 'banken'. \n'Banken' blir den spelaren som får högsta kortet innan första omgången eller får ett 'ess' under spelets gång.\n  Banken vinner alltid vid lika kortvärde."
+            banquitoTextView.text = "-Banquito  går ut på att få ett högre kortvärde än 'Banken'. \n\n-'Banken' blir den spelaren som får högsta kortet innan första omgången eller är ensam att få ett 'ess' under spelets gång.\n-Hänsyn tas till turordning!\n \n Banken vinner alltid vid lika kortvärde!"
             button.setOnClickListener {
 
                 val intent = Intent( this, BanquitoGameActivity::class.java)

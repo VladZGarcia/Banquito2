@@ -342,26 +342,28 @@ class BanquitoStartActivity : AppCompatActivity() {
         infoTextView.text = "$name du valde Korthög $valdPile"
 
             for (player in playerList.players) {
-
+                var rndPlayer = playerList.RndPlayer()
                 var newPile = removePile()
-                 resultText =  "${infoTextView.text}\n${player.name} väljer korthög ${newPile.pile}"
+                 resultText =  "${infoTextView.text}\n${rndPlayer.name} väljer korthög ${newPile.pile}"
                 infoTextView.text = resultText
-                player.cardValue = newPile.value
+                rndPlayer.cardValue = newPile.value
 
-                if(highestVal.cardValue < player.cardValue) {
-                    highestVal = player
+                if(highestVal.cardValue < rndPlayer.cardValue) {
+                    highestVal = rndPlayer
 
                 }
             }
+        //for(player in playerList.players) {
+        //}
         highestVal.bank = true
+//bank kontroll
+           resultText =  "${infoTextView.text}\n${player1.name} bank :${player1.bank}"
+           infoTextView.text = resultText
 
-       //    resultText =  "${infoTextView.text}\n${player1.name} bank :${player1.bank}"
-       //    infoTextView.text = resultText
-
-       //for( player in playerList.players){
-       //    resultText =  "${infoTextView.text}\n${player.name} bank :${player.bank}"
-       //    infoTextView.text = resultText
-       //}
+       for( player in playerList.players){
+           resultText =  "${infoTextView.text}\n${player.name} bank :${player.bank}"
+           infoTextView.text = resultText
+       }
 
         resultText =  "${infoTextView.text}\n${highestVal.name} har högsta kort och är Banken\n Tryck på skärmen!"
         infoTextView.text = resultText
