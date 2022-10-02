@@ -21,7 +21,7 @@ class BanquitoStartActivity : AppCompatActivity() {
     var player1 = Players("",100,false,  0)
     val piles = mutableListOf<Cards>()
     var valdPile = 0
-    var name : String? =""
+    var name : String? = "player1"
     var firstRound = true
     var bet =0
 
