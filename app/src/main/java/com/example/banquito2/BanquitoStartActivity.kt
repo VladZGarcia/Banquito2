@@ -268,6 +268,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 button5Card.pile = 5
                 piles.add(button5Card)
                 // HÄR BÖRJAR PROBLEMEN!
+
                 cardButton1.setOnClickListener {
                     val animation1 = AnimationUtils.loadAnimation(this, R.anim.bounce)
                     cardButton1.startAnimation(animation1)
@@ -275,6 +276,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     valdPile = 0
 
                     if (piles.size == 5) {
+                        bankGame()
                         cardButton2.callOnClick()
                         cardButton3.callOnClick()
                         cardButton4.callOnClick()
@@ -289,6 +291,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     valdPile = 1
 
                     if (piles.size == 5) {
+                        bankGame()
                         cardButton1.callOnClick()
                         cardButton3.callOnClick()
                         cardButton4.callOnClick()
@@ -302,6 +305,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     valdPile = 2
 
                     if (piles.size == 5) {
+                        bankGame()
                         cardButton1.callOnClick()
                         cardButton2.callOnClick()
                         cardButton4.callOnClick()
@@ -315,6 +319,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     valdPile = 3
 
                     if (piles.size == 5) {
+                        bankGame()
                         cardButton1.callOnClick()
                         cardButton3.callOnClick()
                         cardButton2.callOnClick()
@@ -328,6 +333,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     valdPile = 4
 
                     if (piles.size == 5) {
+                        bankGame()
                         cardButton1.callOnClick()
                         cardButton3.callOnClick()
                         cardButton4.callOnClick()
@@ -386,4 +392,89 @@ class BanquitoStartActivity : AppCompatActivity() {
 
 
     }
-}
+
+    fun bankGame() {
+        var resultText = ""
+        infoTextView.text =""
+        var pileChoice = piles[valdPile]
+        piles.removeAt(valdPile)
+        player1.cardValue = pileChoice.value
+        valdPile += 1
+        infoTextView.text = "$name du valde Korthög $valdPile"
+
+        for (player in playerList.players) {
+            var rndPlayer = playerList.RndPlayer()
+            var newPile = removePile()
+            resultText = "${infoTextView.text}\n${rndPlayer.name} väljer korthög ${newPile.pile}"
+            infoTextView.text = resultText
+            rndPlayer.cardValue = newPile.value
+        }
+
+        resultText = "${infoTextView.text}\n Tryck på skärmen!"
+        infoTextView.text = resultText
+
+        infoTextView.setOnClickListener {
+            if(player1.bank) {
+                for(player in playerList.players){
+
+                    if (player1.cardValue >= player.cardValue) {
+
+                        player.money -= player.banquitoBet
+                        player1.money += player.banquitoBet
+                        resultText =
+                            "${infoTextView.text}\n${player1.name} vinner ${player.banquitoBet} banquitos av ${player.name}. "
+                        infoTextView.text = resultText
+
+                    } else {
+                        player.money += player.banquitoBet
+                        player1.money -= player.banquitoBet
+                        resultText =
+                            "${infoTextView.text}\n${player1.name} forlorar ${player.banquitoBet} banquitos till ${player.name}. "
+                        infoTextView.text = resultText
+                    }
+                }
+            }
+            resultText = "${infoTextView.text}\n Tryck på skärmen!"
+            infoTextView.text = resultText
+            for(player in playerList.players){
+                if(player.bank){
+                    //cardValue controll mot spelare 1
+                    if(player.cardValue >= player1.cardValue) {
+                        player1.money -= player1.banquitoBet
+                        player.money += player1.banquitoBet
+                        infoTextView.text = "${player.name} vinner ${player1.banquitoBet} banquitos av ${player1.name}. "
+
+
+                    }else {
+                        player1.money += player1.banquitoBet
+                        player.money -= player1.banquitoBet
+                        infoTextView.text = "${player.name} forlorar ${player1.banquitoBet} banquitos till ${player1.name}. "
+                    }
+                    //cardValue controll mot bottarna
+                    for(player2 in playerList.players){
+                        if(!player2.bank) {
+
+                            if (player.cardValue >= player2.cardValue) {
+
+                                player2.money -= player2.banquitoBet
+                                player.money += player2.banquitoBet
+                                resultText =
+                                    "${infoTextView.text}\n${player.name} vinner ${player2.banquitoBet} banquitos av ${player2.name}. "
+                                infoTextView.text = resultText
+
+                            } else {
+                                player2.money += player2.banquitoBet
+                                player.money -= player2.banquitoBet
+                                resultText =
+                                    "${infoTextView.text}\n${player.name} forlorar ${player2.banquitoBet} banquitos till ${player2.name}. "
+                                infoTextView.text = resultText
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+        }
+    }
