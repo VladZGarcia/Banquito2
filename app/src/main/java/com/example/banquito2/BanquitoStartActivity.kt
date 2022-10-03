@@ -176,7 +176,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 infoTextView.setEnabled(false)
                 betView.setEnabled(true)
                 betView.setHint("Bet!")
-                betView.setBackgroundResource(android.R.color.white)
+                //betView.setBackgroundResource(android.R.color.white)
 
                 betView.setOnEditorActionListener(TextView.OnEditorActionListener { v, id, event ->
                     if (id == EditorInfo.IME_ACTION_DONE) {
@@ -340,6 +340,7 @@ class BanquitoStartActivity : AppCompatActivity() {
        // }
     }
 
+
     fun removePile() : Cards {
 
        val rndPile = (0 until piles.size).random()
@@ -449,54 +450,54 @@ class BanquitoStartActivity : AppCompatActivity() {
                 }
             }
         }
+        for (player in playerList.players) {
+            if (player1.cardValue == 14 && player.cardValue != 14) {
+                player.bank = false
+                player1.bank = true
+                resultText =
+                    "${infoTextView.text}\n${player1.name} var ensam om att få Ess och är Banken. "
+                infoTextView.text = resultText
+            }
+            if (player.cardValue == 14 && player1.cardValue != 14) {
+                for (player2 in playerList.players) {
+                    if (player.name != player2.name) {
+                        if (player2.cardValue != 14) {
+
+                            player.bank = true
+                            player2.bank = false
+                            resultText =
+                                "${infoTextView.text}\n${player.name} var ensam om att få Ess och är Banken. "
+                            infoTextView.text = resultText
+                        }
+                    }
+                }
+            }
+        }
         resultText = "${infoTextView.text}\n\n Tryck på skärmen!"
         infoTextView.text = resultText
 
 
 
         infoTextView.setOnClickListener {
-
-            //resultText = "${infoTextView.text}\n\n Tryck på skärmen!"
-            //infoTextView.text = resultText
-
-            resultText =
-                "${infoTextView.text}\n\n${player1.name} har ${player1.money} banquitos att spela för. "
-            infoTextView.text = resultText
+            val intent = Intent( this, BanquitorResultActivity::class.java)
+            intent.putExtra("nameP1", player1.name)
+            intent.putExtra("moneyP1", player1.money)
             for (player in playerList.players) {
-                resultText =
-                    "${infoTextView.text}\n${player.name} har ${player.money} banquitos att spela för. "
-                infoTextView.text = resultText
-            }
-            //resultText = "${infoTextView.text}\nTryck på skärmen. "
-            //infoTextView.text = resultText
+                intent.putExtra("${player.name}", player.name)
+                intent.putExtra("${player.name} money", player.money)
 
-            // Ess check!
-            for (player in playerList.players) {
-                if (player1.cardValue == 14 && player.cardValue != 14) {
-                    player.bank = false
-                    player1.bank = true
-                    resultText =
-                        "${infoTextView.text}\n${player1.name} var ensam om att få Ess och är Banken. "
-                    infoTextView.text = resultText
-                }
-                if (player.cardValue == 14 && player1.cardValue != 14) {
-                    for (player2 in playerList.players) {
-                        if (player.name != player2.name) {
-                            if (player2.cardValue != 14) {
+           //resultText =
+           //    "${infoTextView.text}\n\n${player1.name} har ${player1.money} banquitos att spela för. "
+           //infoTextView.text = resultText
+           //for (player in playerList.players) {
+           //    resultText =
+           //        "${infoTextView.text}\n${player.name} har ${player.money} banquitos att spela för. "
+           //    infoTextView.text = resultText
+           //resultText = "${infoTextView.text}\nTryck på skärmen. "
+           //infoTextView.text = resultText
 
-                                player.bank = true
-                                player2.bank = false
-                                resultText =
-                                    "${infoTextView.text}\n${player.name} var ensam om att få Ess och är Banken. "
-                                infoTextView.text = resultText
-                            }
-                        }
-                    }
-                }
-            }
-            resultText = "${infoTextView.text}\nTryck på skärmen. "
-            infoTextView.text = resultText
-            return@setOnClickListener
         }
+            startActivity(intent)
         }
     }
+}
