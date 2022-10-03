@@ -17,17 +17,10 @@ class BanquitoExplainActivity : AppCompatActivity() {
         banquitoXTextView = findViewById(R.id.banquitoXTextView)
         val button =findViewById<Button>(R.id.Button)
 
-
-
-
         button.setOnClickListener {
 
-            val intent = Intent( this, BanquitoGameActivity::class.java)
-            startActivity(intent)
+
 
         }
-
-
-
     }
 }
