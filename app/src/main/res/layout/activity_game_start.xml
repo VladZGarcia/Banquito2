@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenpokertable"
-    android:gravity="top"
     android:scaleType="centerCrop"
+    android:gravity="top"
     tools:context=".BanquitoStartActivity">
 
     <ImageButton
@@ -69,8 +69,8 @@
 
     <TextView
         android:id="@+id/infoTextView"
-        android:layout_width="328dp"
-        android:layout_height="306dp"
+        android:layout_width="330dp"
+        android:layout_height="333dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
@@ -78,12 +78,10 @@
         android:justificationMode="inter_word"
         android:textColor="#FCE4EC"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/betEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/cardButton1"
@@ -213,8 +211,6 @@
         android:id="@+id/betEditText"
         android:layout_width="49dp"
         android:layout_height="48dp"
-        android:layout_marginTop="344dp"
-        android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="Bet!"
         android:imeOptions="actionDone"
@@ -222,8 +218,9 @@
         android:textAlignment="center"
         android:textColor="#FCE4EC"
         android:textColorHint="#FCE4EC"
+        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/infoTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
