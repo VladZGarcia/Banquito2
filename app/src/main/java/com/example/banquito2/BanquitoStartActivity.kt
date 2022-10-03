@@ -241,12 +241,12 @@ class BanquitoStartActivity : AppCompatActivity() {
                     for (player in playerList.players) {
                         if (player.bank) {
                             infoTextView.text =
-                                "Korten har delats up i fem högar. ${player.name} är BANKEN! $name vilken väljer du? "
+                                "Korten har delats up i fem högar. \n\n${player.name} är BANKEN! \n\n$name vilken väljer du? "
                         }
                     }
                 } else {
                     infoTextView.text =
-                        "Korten har delats up i fem högar. ${player1.name} är BANKEN! $name vilken väljer du? "
+                        "Korten har delats up i fem högar. \n\n${player1.name} är BANKEN! \n\n$name vilken väljer du? "
                 }
             }
             if(!firstRound){
@@ -465,8 +465,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                             } else {
                                 player2.money += player2.banquitoBet
                                 player.money -= player2.banquitoBet
-                                resultText =
-                                    "${infoTextView.text}\n${player.name} forlorar ${player2.banquitoBet} banquitos till ${player2.name}. "
+                                resultText ="${infoTextView.text}\n${player.name} forlorar ${player2.banquitoBet} banquitos till ${player2.name}. "
                                 infoTextView.text = resultText
                             }
                         }
@@ -474,7 +473,44 @@ class BanquitoStartActivity : AppCompatActivity() {
                     }
                 }
             }
+            resultText ="${infoTextView.text}\n\n${player1.name} har ${player1.money} banquitos att spela för. "
+            infoTextView.text = resultText
+            for(player in playerList.players){
+                resultText ="${infoTextView.text}\n${player.name} har ${player.money} banquitos att spela för. "
+                infoTextView.text = resultText
+            }
+
         }
+        // Ess check!
+        for(player in playerList.players) {
+            if(player1.cardValue == 14 && player.cardValue != 14) {
+                player.bank = false
+                player1.bank = true
+                resultText ="${infoTextView.text}\n${player1.name} var ensam om att få Ess och är Banken. "
+                infoTextView.text = resultText
+            }
+            if(player.cardValue == 14 && player1.cardValue != 14){
+                for(player2 in playerList.players) {
+                    if(player.name != player2.name) {
+                        if(player2.cardValue != 14) {
+
+                            player.bank = true
+                            player2.bank = false
+                            resultText ="${infoTextView.text}\n${player.name} var ensam om att få Ess och är Banken. "
+                            infoTextView.text = resultText
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+
+
+        }
+
 
         }
     }
