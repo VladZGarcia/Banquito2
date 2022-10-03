@@ -1,10 +1,12 @@
 package com.example.banquito2
 
+import android.R.attr
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+
 
 class BanquitorResultActivity : AppCompatActivity() {
 
@@ -20,11 +22,11 @@ class BanquitorResultActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.Button)
         player1.name = intent.getStringExtra("nameP1")
         player1.money = intent.getIntExtra("moneyP1", 0)
+        player1.bank = intent.getBooleanExtra("${player1.name} bank", false)
         for(player in playerList.players){
             player.name = intent.getStringExtra("${player.name}")
             player.money = intent.getIntExtra("${player.name} money", 0)
-
-
+            player.bank = intent.getBooleanExtra("${player.name} bank", false)
         }
 
         var resultText ="${infoTextView.text}\n\n${player1.name} har ${player1.money} banquitos att spela för. "
@@ -38,8 +40,23 @@ class BanquitorResultActivity : AppCompatActivity() {
         resultText = "${infoTextView.text}\nTryck på knappen. "
         infoTextView.text = resultText
         button.setOnClickListener {
+            val intent = Intent(this, BanquitoStartActivity::class.java)
 
-            finish()
+            intent.putExtra("nameText", player1.name)
+            intent.putExtra("moneyP1", player1.money)
+            if(player1.bank) {
+                intent.putExtra("${player1.name} bank", player1.bank)
+            }
+            for (player in playerList.players) {
+                intent.putExtra("${player.name}", player.name)
+                intent.putExtra("${player.name} money", player.money)
+                if(player.bank){
+                    intent.putExtra("${player.name} bank", player.bank)
+                }
+            }
+            intent.putExtra("firstRound", false)
+
+            startActivity(intent)
         }
     }
 }
