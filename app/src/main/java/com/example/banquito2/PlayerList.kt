@@ -32,13 +32,13 @@ class PlayerList() {
 
     fun createPlayers() {
 
-        val player2 = Players("Victor ", 100, false)
+        val player2 = Players("Victor ", 100, false,0,1)
         players.add(player2)
-        val player3 = Players("Jessica ", 100, false)
+        val player3 = Players("Jessica ", 100, false,0,1)
         players.add(player3)
-        val player4 = Players("Lionel ", 100, false)
+        val player4 = Players("Lionel ", 100, false,0,1)
         players.add(player4)
-        val player5 = Players("Andrea ", 100, false)
+        val player5 = Players("Andrea ", 100, false,0,1)
         players.add(player5)
     }
 }
