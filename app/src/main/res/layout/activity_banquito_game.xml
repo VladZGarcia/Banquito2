@@ -49,7 +49,7 @@
         android:ems="10"
         android:gravity="center"
         android:imeOptions="actionDone"
-        android:inputType="textShortMessage"
+        android:inputType="textPersonName"
         android:justificationMode="inter_word"
         android:textColor="#FCE4EC"
         android:textColorHint="#FCE4EC"

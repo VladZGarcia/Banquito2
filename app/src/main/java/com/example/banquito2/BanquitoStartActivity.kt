@@ -38,8 +38,9 @@ class BanquitoStartActivity : AppCompatActivity() {
         betView = findViewById(R.id.betEditText)
 
         betView.setEnabled(false)
-
-
+        betView.setHint("")
+        betView.setText(null)
+        betView.setBackgroundResource(android.R.color.transparent)
         name = intent.getStringExtra("nameText")
         firstRound = intent.getBooleanExtra("firstRound", true)
         infoTextView = findViewById(R.id.infoTextView)
@@ -49,7 +50,7 @@ class BanquitoStartActivity : AppCompatActivity() {
 
         if (firstRound) {
             infoTextView.setEnabled(false)
-             resultText = "Korten har delats up i fem högar. Högsta kortet blir BANKEN!  "
+             resultText = "Korten har delats up i fem högar. \nHögsta kortet blir BANKEN!"
             infoTextView.text = "$resultText\n \n$name vilken väljer du?"
 
             val button1Card = deck.newRndCard()
@@ -67,6 +68,7 @@ class BanquitoStartActivity : AppCompatActivity() {
             val button5Card = deck.newRndCard()
             button5Card.pile = 5
             piles.add(button5Card)
+
             cardButton1.setOnClickListener {
                 val animation1 = AnimationUtils.loadAnimation(this, R.anim.bounce)
                 cardButton1.startAnimation(animation1)
@@ -83,7 +85,6 @@ class BanquitoStartActivity : AppCompatActivity() {
                 }
                 firstRound = false
             }
-
             cardButton2.setOnClickListener {
                 val animation2 = AnimationUtils.loadAnimation(this, R.anim.bounce)
                 cardButton2.startAnimation(animation2)
@@ -152,8 +153,9 @@ class BanquitoStartActivity : AppCompatActivity() {
         }
         if(!firstRound) {
             infoTextView.setEnabled(true)
-            resultText = "Dags att spela om Banquitos!\n$name Tryck på skärmen"
+            resultText = "Ny omgång!\n\nTryck på skärmen!"
             infoTextView.text = resultText
+            // Tar emot intent!!
             player1.name = intent.getStringExtra("nameText")
             player1.money = intent.getIntExtra("moneyP1", 0)
             player1.bank = intent.getBooleanExtra("${player1.name} bank", false)
@@ -162,7 +164,6 @@ class BanquitoStartActivity : AppCompatActivity() {
                 player.money = intent.getIntExtra("${player.name} money", 0)
                 player.bank = intent.getBooleanExtra("${player.name} bank", false)
             }
-
         }
 
         infoTextView.setOnClickListener {
@@ -177,23 +178,8 @@ class BanquitoStartActivity : AppCompatActivity() {
             cardButton4.setImageResource(R.drawable.peter_river)
             cardButton5.setImageResource(R.drawable.peter_river)
 
+            bet()
 
-            if (!player1.bank) {
-
-                bet()
-
-            } else if (player1.bank) {
-                    for (player in playerList.players) {
-
-                        var playerbet = (1..5).random()
-                        player.banquitoBet = playerbet
-                        resultText =
-                            "${infoTextView.text}\n ${player.name} betar ${player.banquitoBet} Banquitos"
-                        infoTextView.text = resultText
-                    }
-                    infoTextView.text = "${infoTextView.text}\n\nTryck på skärmen för att Starta!"
-                infoTextView.setEnabled(true)
-            }
             infoTextView.setEnabled(true)
             infoTextView.setOnClickListener {
                 cardButton1.setEnabled(true)
@@ -248,7 +234,6 @@ class BanquitoStartActivity : AppCompatActivity() {
 
                     }
                 }
-
                 cardButton2.setOnClickListener {
                     val animation2 = AnimationUtils.loadAnimation(this, R.anim.bounce)
                     cardButton2.startAnimation(animation2)
@@ -314,13 +299,12 @@ class BanquitoStartActivity : AppCompatActivity() {
         }
     }
 
-    //override fun onRestart() {
-    //    super.onRestart()
-//
-    //}
     fun bet() {
-        var resultText = "Dags att spela om Banquitos!\n "
-        infoTextView.text = "$resultText \n Hur mycket vill du satsa?"
+        var resultText = "Dags att spela Banquito!\n"
+
+        if (!player1.bank) {
+        infoTextView.text = "$resultText \nHur mycket vill du satsa?"
+        betView.setBackgroundResource(android.R.color.transparent)
         infoTextView.setEnabled(false)
         betView.setEnabled(true)
         betView.text = null
@@ -331,27 +315,43 @@ class BanquitoStartActivity : AppCompatActivity() {
                 var betInput = betView.text.toString() ?: null
                 bet = betInput!!.toInt()
                 player1.banquitoBet = bet
-
                 infoTextView.text = "${player1.name} betar ${player1.banquitoBet} Banquitos"
                 for (player in playerList.players) {
                     if (!player.bank) {
-                        var playerbet = (1..5).random()
+                        var playerbet = (1..10).random()
                         player.banquitoBet = playerbet
                         resultText =
-                            "${infoTextView.text}\n ${player.name} betar ${player.banquitoBet} Banquitos"
+                            "${infoTextView.text}\n${player.name} betar ${player.banquitoBet} Banquitos"
                         infoTextView.text = resultText
                     }
                 }
                 infoTextView.text =
-                    "${infoTextView.text}\n\nTryck på skärmen för att Starta!"
+                    "${infoTextView.text}\n\nTryck på skärmen för att Starta!\n"
                 infoTextView.setEnabled(true)
                 betView.setEnabled(false)
                 betView.setHint("")
-
+                betView.text = null
                 betView.setBackgroundResource(android.R.color.transparent)
                 true
             } else false
         })
+
+        } else if (player1.bank) {
+            betView.setHint("")
+            betView.setText(null)
+            infoTextView.text = "Du är Banken!\n"
+            for (player in playerList.players) {
+
+                var playerbet = (1..10).random()
+                player.banquitoBet = playerbet
+
+                resultText =
+                    "${infoTextView.text}\n${player.name} betar ${player.banquitoBet} Banquitos"
+                infoTextView.text = resultText
+            }
+            infoTextView.text = "${infoTextView.text}\n\nTryck på skärmen för att Starta!"
+            infoTextView.setEnabled(true)
+        }
 
     }
 
@@ -371,7 +371,7 @@ class BanquitoStartActivity : AppCompatActivity() {
         player1.cardValue = firstChoice.value
         var highestVal = player1
         valdPile += 1
-        infoTextView.text = "$name du valde Korthög $valdPile"
+        infoTextView.text = "$name du valde korthög $valdPile"
 
             for (player in playerList.players) {
                 var rndPlayer = playerList.RndPlayer()
@@ -385,7 +385,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 }
             }
         highestVal.bank = true
-        resultText =  "${infoTextView.text}\n${highestVal.name} har högsta kort och är Banken\n Tryck på skärmen!"
+        resultText =  "${infoTextView.text}\n\n${highestVal.name} har högst kort och är Banken\n\nTryck på skärmen!"
         infoTextView.text = resultText
         infoTextView.setEnabled(true)
     }
@@ -410,6 +410,7 @@ class BanquitoStartActivity : AppCompatActivity() {
         infoTextView.text = resultText
         infoTextView.setEnabled(true)
         infoTextView.setOnClickListener {
+            infoTextView.text = ""
         if (player1.bank) {
             for (player in playerList.players) {
                 if (player1.cardValue >= player.cardValue) {
@@ -479,10 +480,11 @@ class BanquitoStartActivity : AppCompatActivity() {
 
 
             if (player.cardValue == 14 && player1.cardValue != 14) {
+
                 for (player2 in playerList.players) {
                     if (player.name != player2.name) {
                         if (player2.cardValue != 14) {
-
+                            player1.bank = false
                             player.bank = true
                             player2.bank = false
 
@@ -490,7 +492,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     }
                 }
                 if(player.bank){
-                    resultText ="${infoTextView.text}\n${player.name} var ensam om att få Ess och är Banken. "
+                    resultText ="${infoTextView.text}\n${player.name} var ensam om att få Ess och är Banken."
                     infoTextView.text = resultText
 
                 }
@@ -499,11 +501,11 @@ class BanquitoStartActivity : AppCompatActivity() {
 
         }
             if(player1.bank && player1.cardValue == 14) {
-                resultText ="${infoTextView.text}\n${player1.name} var ensam om att få Ess och är Banken. "
+                resultText ="${infoTextView.text}\n${player1.name} var ensam om att få Ess och är Banken."
                 infoTextView.text = resultText
             }
 
-            resultText = "${infoTextView.text}\n\n Tryck på skärmen!"
+            resultText = "${infoTextView.text}  Tryck på skärmen!"
             infoTextView.text = resultText
             infoTextView.setOnClickListener {
                 val intent = Intent(this, BanquitorResultActivity::class.java)
@@ -520,7 +522,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     }
                 }
                 startActivity(intent)
-
+finish()
             }
     }
     }

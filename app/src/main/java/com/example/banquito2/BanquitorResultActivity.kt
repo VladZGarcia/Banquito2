@@ -1,6 +1,5 @@
 package com.example.banquito2
 
-import android.R.attr
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -16,7 +15,7 @@ class BanquitorResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_banquito_explain)
+        setContentView(R.layout.activity_banquito_result)
 
         infoTextView = findViewById(R.id.banquitoXTextView)
         val button = findViewById<Button>(R.id.Button)
@@ -29,11 +28,11 @@ class BanquitorResultActivity : AppCompatActivity() {
             player.bank = intent.getBooleanExtra("${player.name} bank", false)
         }
 
-        var resultText ="${infoTextView.text}\n\n${player1.name} har ${player1.money} banquitos att spela för. "
+        var resultText ="${infoTextView.text}\n\n${player1.name} har ${player1.money} banquitos att spela för.\n"
         infoTextView.text = resultText
 
         for (player in playerList.players) {
-            resultText ="${infoTextView.text}\n${player.name} har ${player.money} banquitos att spela för. "
+            resultText ="\n${infoTextView.text}\n${player.name} har ${player.money} banquitos att spela för.\n"
             infoTextView.text = resultText
 
         }
@@ -57,6 +56,7 @@ class BanquitorResultActivity : AppCompatActivity() {
             intent.putExtra("firstRound", false)
 
             startActivity(intent)
+            finish()
         }
     }
 }

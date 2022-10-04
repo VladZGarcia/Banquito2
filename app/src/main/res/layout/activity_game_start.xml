@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenpokertable"
-    android:scaleType="centerCrop"
     android:gravity="top"
+    android:scaleType="centerCrop"
     tools:context=".BanquitoStartActivity">
 
     <ImageButton
@@ -77,11 +77,13 @@
         android:autoSizeTextType="none"
         android:justificationMode="inter_word"
         android:textColor="#FCE4EC"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/betEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.187" />
 
     <ImageButton
         android:id="@+id/cardButton1"
@@ -211,6 +213,7 @@
         android:id="@+id/betEditText"
         android:layout_width="49dp"
         android:layout_height="48dp"
+        android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="Bet!"
         android:imeOptions="actionDone"
@@ -218,7 +221,6 @@
         android:textAlignment="center"
         android:textColor="#FCE4EC"
         android:textColorHint="#FCE4EC"
-        android:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoTextView" />
