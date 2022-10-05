@@ -4,10 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -16,6 +14,11 @@ class BanquitoStartActivity : AppCompatActivity() {
 
     lateinit var infoTextView : TextView
     lateinit var betView : EditText
+    lateinit var pile1View : TextView
+    lateinit var pile2View : TextView
+    lateinit var pile3View : TextView
+    lateinit var pile4View : TextView
+    lateinit var pile5View : TextView
     val deck = CardList()
     val playerList = PlayerList()
     var player1 = Players("",100,false,  0)
@@ -36,6 +39,11 @@ class BanquitoStartActivity : AppCompatActivity() {
         var cardButton4 = findViewById<ImageView>(R.id.cardButton4)
         var cardButton5 = findViewById<ImageView>(R.id.cardButton5)
         betView = findViewById(R.id.betEditText)
+        pile1View = findViewById(R.id.pileTextNumber)
+        pile2View = findViewById(R.id.pileTextNumber2)
+        pile3View = findViewById(R.id.pileTextNumber4)
+        pile4View = findViewById(R.id.pileTextNumber3)
+        pile5View = findViewById(R.id.pileTextNumber5)
 
         betView.setEnabled(false)
         betView.setHint("")
@@ -50,8 +58,8 @@ class BanquitoStartActivity : AppCompatActivity() {
 
         if (firstRound) {
             infoTextView.setEnabled(false)
-             resultText = "Korten har delats up i fem högar. \nHögsta kortet blir BANKEN!"
-            infoTextView.text = "$resultText\n \n$name vilken väljer du?"
+             resultText = "Victor, Jessica, Lionel och Andrea är med och spelar.\n\nHögsta kortet blir BANKEN!"
+            infoTextView.text = "$resultText\n \n$name Välj korthög!"
 
             val button1Card = deck.newRndCard()
             button1Card.pile = 1
@@ -177,6 +185,11 @@ class BanquitoStartActivity : AppCompatActivity() {
             cardButton3.setImageResource(R.drawable.peter_river)
             cardButton4.setImageResource(R.drawable.peter_river)
             cardButton5.setImageResource(R.drawable.peter_river)
+            pile1View.text = null
+            pile2View.text = null
+            pile3View.text = null
+            pile4View.text = null
+            pile5View.text = null
 
             bet()
 
@@ -192,12 +205,12 @@ class BanquitoStartActivity : AppCompatActivity() {
                     for (player in playerList.players) {
                         if (player.bank) {
                             infoTextView.text =
-                                "Korten har delats up i fem högar. \n\n${player.name} är BANKEN! \n\n$name vilken väljer du? "
+                                "\n\n${player.name} är BANKEN! \n\n$name vilken väljer du? "
                         }
                     }
                 } else {
                     infoTextView.text =
-                        "Korten har delats up i fem högar. \n\nDu är BANKEN! \n\n$name vilken väljer du? "
+                        "\n\nDu är BANKEN! \n\n$name vilken väljer du? "
                 }
             }
             if (!firstRound) {
@@ -364,20 +377,57 @@ class BanquitoStartActivity : AppCompatActivity() {
        return newPile
    }
 
+    fun player1NameDesignation (pileNrName : Int?) {
+        if (pileNrName == 0){
+            pile1View.text = "${player1.name}"
+        }else if (pileNrName == 1){
+            pile2View.text = "${player1.name}"
+
+        }else if (pileNrName == 3){ //<--Fel vid designeringen i layout xml gick inte att ändra!!
+            pile3View.text = "${player1.name}"//<--Fel vid designeringen i layout xml gick inte att ändra!!
+
+        }else if (pileNrName == 2){ //<--Fel vid designeringen i layout xml gick inte att ändra!!
+            pile4View.text = "${player1.name}"//<--Fel vid designeringen i layout xml gick inte att ändra!!
+
+        }else if (pileNrName == 4) {
+            pile5View.text = "${player1.name}"
+        }
+    }
+    fun playerListNameDesignation (pileNrName : Int?, playerName : String?) {
+        if (pileNrName == 1){
+            pile1View.text = "${playerName}"
+        }else if (pileNrName == 2){
+            pile2View.text = "${playerName}"
+
+        }else if (pileNrName == 4){ //<----Fel vid designeringen i layout xml gick inte att ändra!!
+            pile3View.text = "${playerName}"
+
+        }else if (pileNrName == 3){ //<--Fel vid designeringen i layout xml gick inte att ändra!!
+            pile4View.text = "${playerName}"//<--Fel vid designeringen i layout xml gick inte att ändra!!
+
+        }else if (pileNrName == 5) {
+            pile5View.text = "${playerName}"
+        }
+    }
+
     fun firstPlayerChoice() {
         var resultText = ""
         var firstChoice = piles[valdPile]
         piles.removeAt(valdPile)
+        player1NameDesignation(valdPile)
+        Log.d("!!!","$valdPile")
         player1.cardValue = firstChoice.value
         var highestVal = player1
         valdPile += 1
-        infoTextView.text = "$name du valde korthög $valdPile"
+        //infoTextView.text = "$name du valde korthög $valdPile"
 
             for (player in playerList.players) {
                 var rndPlayer = playerList.RndPlayer()
                 var newPile = removePile()
-                 resultText =  "${infoTextView.text}\n${rndPlayer.name} väljer korthög ${newPile.pile}"
-                infoTextView.text = resultText
+                playerListNameDesignation(newPile.pile,rndPlayer.name)
+                Log.d("!!!","${newPile.pile} ${rndPlayer.name}")
+               //resultText =  "${infoTextView.text}\n${rndPlayer.name} väljer korthög ${newPile.pile}"
+               //infoTextView.text = resultText
                 rndPlayer.cardValue = newPile.value
 
                 if(highestVal.cardValue < rndPlayer.cardValue) {
@@ -385,7 +435,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 }
             }
         highestVal.bank = true
-        resultText =  "${infoTextView.text}\n\n${highestVal.name} har högst kort och är Banken\n\nTryck på skärmen!"
+        resultText =  "\n\n${highestVal.name} är Banken\n\nTryck på skärmen!"
         infoTextView.text = resultText
         infoTextView.setEnabled(true)
     }
@@ -395,15 +445,17 @@ class BanquitoStartActivity : AppCompatActivity() {
         infoTextView.text = ""
         var pileChoice = piles[valdPile]
         piles.removeAt(valdPile)
+        player1NameDesignation(valdPile)
         player1.cardValue = pileChoice.value
         valdPile += 1
-        infoTextView.text = "$name du valde Korthög $valdPile"
+        //infoTextView.text = "$name du valde Korthög $valdPile"
 
         for (player in playerList.players) {
             var rndPlayer = playerList.RndPlayer()
             var newPile = removePile()
-            resultText = "${infoTextView.text}\n${rndPlayer.name} väljer korthög ${newPile.pile}"
-            infoTextView.text = resultText
+            playerListNameDesignation(newPile.pile,rndPlayer.name)
+            //resultText = "${infoTextView.text}\n${rndPlayer.name} väljer korthög ${newPile.pile}"
+            //infoTextView.text = resultText
             rndPlayer.cardValue = newPile.value
         }
         resultText = "${infoTextView.text}\n\n Tryck på skärmen!"
@@ -471,59 +523,65 @@ class BanquitoStartActivity : AppCompatActivity() {
                 }
             }
         }
-        //Ess controll
-        for (player in playerList.players) {
-            if (player1.cardValue == 14 && player.cardValue != 14) {
-                player.bank = false
-                player1.bank = true
-            }
 
 
-            if (player.cardValue == 14 && player1.cardValue != 14) {
-
-                for (player2 in playerList.players) {
-                    if (player.name != player2.name) {
-                        if (player2.cardValue != 14) {
-                            player1.bank = false
-                            player.bank = true
-                            player2.bank = false
-
-                        }
+                //Ess controll
+                for (player in playerList.players) {
+                    if (player1.cardValue == 14 && player.cardValue != 14) {
+                        player.bank = false
+                        player1.bank = true
                     }
+
+
+                    if (player.cardValue == 14 && player1.cardValue != 14) {
+
+                        for (player2 in playerList.players) {
+                            if (player.name != player2.name) {
+                                if (player2.cardValue != 14) {
+                                    player1.bank = false
+                                    player.bank = true
+                                    player2.bank = false
+
+                                }
+                            }
+                        }
+                        if (player.bank) {
+                            resultText =
+                                "\n${player.name} var ensam om att få Ess och är Banken."
+                            infoTextView.text = resultText
+                        }
+
+                    }
+
                 }
-                if(player.bank){
-                    resultText ="${infoTextView.text}\n${player.name} var ensam om att få Ess och är Banken."
+                if (player1.bank && player1.cardValue == 14) {
+                    resultText =
+                        "\n${player1.name} var ensam om att få Ess och är Banken."
                     infoTextView.text = resultText
 
                 }
-
-            }
-
-        }
-            if(player1.bank && player1.cardValue == 14) {
-                resultText ="${infoTextView.text}\n${player1.name} var ensam om att få Ess och är Banken."
+                resultText = "${infoTextView.text}\n\nTryck på skärmen!"
                 infoTextView.text = resultText
-            }
 
-            resultText = "${infoTextView.text}  Tryck på skärmen!"
-            infoTextView.text = resultText
-            infoTextView.setOnClickListener {
-                val intent = Intent(this, BanquitorResultActivity::class.java)
-                intent.putExtra("nameP1", player1.name)
-                intent.putExtra("moneyP1", player1.money)
-                if(player1.bank) {
-                    intent.putExtra("${player1.name} bank", player1.bank)
-                }
-                for (player in playerList.players) {
-                    intent.putExtra("${player.name}", player.name)
-                    intent.putExtra("${player.name} money", player.money)
-                    if(player.bank){
-                        intent.putExtra("${player.name} bank", player.bank)
+
+                infoTextView.setOnClickListener {
+                    val intent = Intent(this, BanquitorResultActivity::class.java)
+                    intent.putExtra("nameP1", player1.name)
+                    intent.putExtra("moneyP1", player1.money)
+                    if (player1.bank) {
+                        intent.putExtra("${player1.name} bank", player1.bank)
                     }
+                    for (player in playerList.players) {
+                        intent.putExtra("${player.name}", player.name)
+                        intent.putExtra("${player.name} money", player.money)
+                        if (player.bank) {
+                            intent.putExtra("${player.name} bank", player.bank)
+                        }
+                    }
+                    startActivity(intent)
+                    finish()
                 }
-                startActivity(intent)
-finish()
-            }
+
     }
     }
 }
