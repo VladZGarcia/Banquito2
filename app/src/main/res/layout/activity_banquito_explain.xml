@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/greenpokertable"
-    tools:context=".BanquitoExplainActivity">
+    tools:context=".BanquitorResultActivity">
 
     <TextView
         android:id="@+id/banquitoXTextView"
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="44dp"
-        android:text="Button"
+        android:text="Continue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -36,7 +36,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REGLER"
+        android:text="RESULTAT"
         android:textColor="#FCE4EC"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/banquitoXTextView"

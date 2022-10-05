@@ -31,17 +31,17 @@ class BanquitoGameActivity : AppCompatActivity() {
         val button =findViewById<Button>(R.id.nextButton)
         nameView.setOnEditorActionListener(OnEditorActionListener { v, id, event ->
             if (id == EditorInfo.IME_ACTION_DONE) {
-                val nameText = nameView.text.toString() ?: null
+                val nameText = nameView.text.toString() ?: "player1"
                 val intent = Intent( this, BanquitoStartActivity::class.java)
                 Log.d("!!!","nameText = $nameText " )
                 intent.putExtra("nameText",nameText)
                 startActivity(intent)
-                //do something here
+
                 true
             } else false
         })
         button.setOnClickListener {
-            val nameText = nameView.text.toString() ?: null
+            val nameText = nameView.text.toString() ?: "player1"
             val intent = Intent( this, BanquitoStartActivity::class.java)
             Log.d("!!!","nameText = $nameText " )
             intent.putExtra("nameText",nameText)
