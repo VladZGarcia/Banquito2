@@ -21,8 +21,9 @@ class BanquitoStartActivity : AppCompatActivity() {
     lateinit var pile5View : TextView
     val deck = CardList()
     val playerList = PlayerList()
+    val cardPiles = CardList()
     var player1 = Players("",100,false,  0)
-    val piles = mutableListOf<Cards>()
+
     var valdPile = 0
     var name : String? = "player1"
     var firstRound = true
@@ -53,29 +54,29 @@ class BanquitoStartActivity : AppCompatActivity() {
         firstRound = intent.getBooleanExtra("firstRound", true)
         infoTextView = findViewById(R.id.infoTextView)
 
-        player1 = Players("$name ", 100, false)
+        player1 = Players("$name ", 50, false)
         var resultText =""
 
         if (firstRound) {
             infoTextView.setEnabled(false)
-             resultText = "Victor, Jessica, Lionel och Andrea är med och spelar.\n\nHögsta kortet blir BANKEN!"
+             resultText = "\n\nHögsta kortet blir BANKEN!"
             infoTextView.text = "$resultText\n \n$name Välj korthög!"
 
             val button1Card = deck.newRndCard()
             button1Card.pile = 1
-            piles.add(button1Card)
+            cardPiles.createPiles(button1Card)
             val button2Card = deck.newRndCard()
             button2Card.pile = 2
-            piles.add(button2Card)
+            cardPiles.createPiles(button2Card)
             val button3Card = deck.newRndCard()
             button3Card.pile = 3
-            piles.add(button3Card)
+            cardPiles.createPiles(button3Card)
             val button4Card = deck.newRndCard()
             button4Card.pile = 4
-            piles.add(button4Card)
+            cardPiles.createPiles(button4Card)
             val button5Card = deck.newRndCard()
             button5Card.pile = 5
-            piles.add(button5Card)
+            cardPiles.createPiles(button5Card)
 
             cardButton1.setOnClickListener {
                 val animation1 = AnimationUtils.loadAnimation(this, R.anim.bounce)
@@ -83,7 +84,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 cardButton1.setImageResource(button1Card.image)
                 valdPile = 0
 
-                if (piles.size == 5) {
+                if (cardPiles.piles.size == 5) {
                     firstPlayerChoice()
 
                     cardButton2.callOnClick()
@@ -99,7 +100,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 cardButton2.setImageResource(button2Card.image)
                 valdPile = 1
 
-                if (piles.size == 5) {
+                if (cardPiles.piles.size == 5) {
                     firstPlayerChoice()
 
                     cardButton1.callOnClick()
@@ -115,7 +116,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 cardButton3.setImageResource(button3Card.image)
                 valdPile = 2
 
-                if (piles.size == 5) {
+                if (cardPiles.piles.size == 5) {
                     firstPlayerChoice()
 
                     cardButton1.callOnClick()
@@ -131,7 +132,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 cardButton4.setImageResource(button4Card.image)
                 valdPile = 3
 
-                if (piles.size == 5) {
+                if (cardPiles.piles.size == 5) {
                     firstPlayerChoice()
 
                     cardButton1.callOnClick()
@@ -147,7 +148,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                 cardButton5.setImageResource(button5Card.image)
                 valdPile = 4
 
-                if (piles.size == 5) {
+                if (cardPiles.piles.size == 5) {
                     firstPlayerChoice()
 
                     cardButton1.callOnClick()
@@ -160,7 +161,7 @@ class BanquitoStartActivity : AppCompatActivity() {
 
         }
         if(!firstRound) {
-            infoTextView.setEnabled(true)
+
             resultText = "Ny omgång!\n\nTryck på skärmen!"
             infoTextView.text = resultText
             // Tar emot intent!!
@@ -173,8 +174,12 @@ class BanquitoStartActivity : AppCompatActivity() {
                 player.bank = intent.getBooleanExtra("${player.name} bank", false)
             }
         }
-
+        infoTextView.setEnabled(true)
         infoTextView.setOnClickListener {
+            if(player1.money==0) {
+                finish()
+
+            }
             cardButton1.setEnabled(false)
             cardButton2.setEnabled(false)
             cardButton3.setEnabled(false)
@@ -218,19 +223,19 @@ class BanquitoStartActivity : AppCompatActivity() {
                 deck.createDeck()
                 var button1Card = deck.newRndCard()
                 button1Card.pile = 1
-                piles.add(button1Card)
+                cardPiles.createPiles(button1Card)
                 var button2Card = deck.newRndCard()
                 button2Card.pile = 2
-                piles.add(button2Card)
+                cardPiles.createPiles(button2Card)
                 var button3Card = deck.newRndCard()
                 button3Card.pile = 3
-                piles.add(button3Card)
+                cardPiles.createPiles(button3Card)
                 var button4Card = deck.newRndCard()
                 button4Card.pile = 4
-                piles.add(button4Card)
+                cardPiles.createPiles(button4Card)
                 var button5Card = deck.newRndCard()
                 button5Card.pile = 5
-                piles.add(button5Card)
+                cardPiles.createPiles(button5Card)
 
                 cardButton1.setOnClickListener {
                     val animation1 = AnimationUtils.loadAnimation(this, R.anim.bounce)
@@ -238,7 +243,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton1.setImageResource(button1Card.image)
                     valdPile = 0
 
-                    if (piles.size == 5) {
+                    if (cardPiles.piles.size == 5) {
                         bankGame()
                         cardButton2.callOnClick()
                         cardButton3.callOnClick()
@@ -253,7 +258,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton2.setImageResource(button2Card.image)
                     valdPile = 1
 
-                    if (piles.size == 5) {
+                    if (cardPiles.piles.size == 5) {
                         bankGame()
                         cardButton1.callOnClick()
                         cardButton3.callOnClick()
@@ -268,7 +273,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton3.setImageResource(button3Card.image)
                     valdPile = 2
 
-                    if (piles.size == 5) {
+                    if (cardPiles.piles.size == 5) {
                         bankGame()
                         cardButton1.callOnClick()
                         cardButton2.callOnClick()
@@ -283,7 +288,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton4.setImageResource(button4Card.image)
                     valdPile = 3
 
-                    if (piles.size == 5) {
+                    if (cardPiles.piles.size == 5) {
                         bankGame()
                         cardButton1.callOnClick()
                         cardButton3.callOnClick()
@@ -298,7 +303,7 @@ class BanquitoStartActivity : AppCompatActivity() {
                     cardButton5.setImageResource(button5Card.image)
                     valdPile = 4
 
-                    if (piles.size == 5) {
+                    if (cardPiles.piles.size == 5) {
                         bankGame()
                         cardButton1.callOnClick()
                         cardButton3.callOnClick()
@@ -313,12 +318,13 @@ class BanquitoStartActivity : AppCompatActivity() {
     }
 
     fun bet() {
+        infoTextView.setEnabled(false)
         var resultText = "Dags att spela Banquito!\n"
 
         if (!player1.bank) {
         infoTextView.text = "$resultText \nHur mycket vill du satsa?"
         betView.setBackgroundResource(android.R.color.transparent)
-        infoTextView.setEnabled(false)
+
         betView.setEnabled(true)
         betView.text = null
         betView.setHint("Bet!")
@@ -327,20 +333,39 @@ class BanquitoStartActivity : AppCompatActivity() {
             if (id == EditorInfo.IME_ACTION_DONE) {
                 var betInput = betView.text.toString() ?: null
                 bet = betInput!!.toInt()
-                player1.banquitoBet = bet
-                infoTextView.text = "${player1.name} betar ${player1.banquitoBet} Banquitos"
-                for (player in playerList.players) {
-                    if (!player.bank) {
-                        var playerbet = (1..10).random()
-                        player.banquitoBet = playerbet
-                        resultText =
-                            "${infoTextView.text}\n${player.name} betar ${player.banquitoBet} Banquitos"
-                        infoTextView.text = resultText
-                    }
+                if(player1.money<bet){
+                    infoTextView.text ="Du har ${player1.money} kvar att satsa"
+                    bet = player1.money
                 }
+
+                    player1.banquitoBet = bet
+                    infoTextView.text = "${player1.name} betar ${player1.banquitoBet} Banquitos"
+                    for (player in playerList.players) {
+                        if (!player.bank) {
+                            if(player.money >= 10 ){
+                                var playerbet = (1..10).random()
+                                player.banquitoBet = playerbet
+                                resultText =
+                                    "${infoTextView.text}\n${player.name} betar ${player.banquitoBet} Banquitos"
+                                infoTextView.text = resultText
+                            } else {
+                                player.banquitoBet = player.money
+                                resultText =
+                                    "${infoTextView.text}\n${player.name} betar ${player.banquitoBet} Banquitos"
+                                infoTextView.text = resultText
+                            }
+
+                        }
+                    }
+                if(player1.money==0) {
+                    infoTextView.text = "Du har inga pengar kvar spelet är slut!"
+
+                }
+
                 infoTextView.text =
                     "${infoTextView.text}\n\nTryck på skärmen för att Starta!\n"
-                infoTextView.setEnabled(true)
+
+
                 betView.setEnabled(false)
                 betView.setHint("")
                 betView.text = null
@@ -363,19 +388,14 @@ class BanquitoStartActivity : AppCompatActivity() {
                 infoTextView.text = resultText
             }
             infoTextView.text = "${infoTextView.text}\n\nTryck på skärmen för att Starta!"
-            infoTextView.setEnabled(true)
+
         }
+
 
     }
 
 
-    fun removePile() : Cards {
 
-       val rndPile = (0 until piles.size).random()
-       val newPile = piles.removeAt(rndPile)
-
-       return newPile
-   }
 
     fun player1NameDesignation (pileNrName : Int?) {
         if (pileNrName == 0){
@@ -412,8 +432,8 @@ class BanquitoStartActivity : AppCompatActivity() {
 
     fun firstPlayerChoice() {
         var resultText = ""
-        var firstChoice = piles[valdPile]
-        piles.removeAt(valdPile)
+        var firstChoice = cardPiles.piles[valdPile]
+        cardPiles.piles.removeAt(valdPile)
         player1NameDesignation(valdPile)
         Log.d("!!!","$valdPile")
         player1.cardValue = firstChoice.value
@@ -423,7 +443,7 @@ class BanquitoStartActivity : AppCompatActivity() {
 
             for (player in playerList.players) {
                 var rndPlayer = playerList.RndPlayer()
-                var newPile = removePile()
+                var newPile = cardPiles.removePile()
                 playerListNameDesignation(newPile.pile,rndPlayer.name)
                 Log.d("!!!","${newPile.pile} ${rndPlayer.name}")
                //resultText =  "${infoTextView.text}\n${rndPlayer.name} väljer korthög ${newPile.pile}"
@@ -437,14 +457,14 @@ class BanquitoStartActivity : AppCompatActivity() {
         highestVal.bank = true
         resultText =  "\n\n${highestVal.name} är Banken\n\nTryck på skärmen!"
         infoTextView.text = resultText
-        infoTextView.setEnabled(true)
+
     }
 
     fun bankGame() {
         var resultText = ""
         infoTextView.text = ""
-        var pileChoice = piles[valdPile]
-        piles.removeAt(valdPile)
+        var pileChoice = cardPiles.piles[valdPile]
+        cardPiles.piles.removeAt(valdPile)
         player1NameDesignation(valdPile)
         player1.cardValue = pileChoice.value
         valdPile += 1
@@ -452,7 +472,7 @@ class BanquitoStartActivity : AppCompatActivity() {
 
         for (player in playerList.players) {
             var rndPlayer = playerList.RndPlayer()
-            var newPile = removePile()
+            var newPile = cardPiles.removePile()
             playerListNameDesignation(newPile.pile,rndPlayer.name)
             //resultText = "${infoTextView.text}\n${rndPlayer.name} väljer korthög ${newPile.pile}"
             //infoTextView.text = resultText

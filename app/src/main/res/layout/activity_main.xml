@@ -21,7 +21,7 @@
         android:textAlignment="gravity"
         android:textColor="#FCE4EC"
         android:textColorHighlight="#F06292"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"

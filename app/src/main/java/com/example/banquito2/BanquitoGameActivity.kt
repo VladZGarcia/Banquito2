@@ -25,7 +25,7 @@ class BanquitoGameActivity : AppCompatActivity() {
         writeNameTextView = findViewById(R.id.writeNameTextView)
         nameView = findViewById(R.id.nameView)
 
-        playerTextView.text = "Fem spelare är med och spelar med 100 'banquitos' som insats"
+        playerTextView.text = "Victor, Jessica, Lionel och Andrea är med och spelar med 50 'banquitos' som insats"
         writeNameTextView.text = "Skriv in ditt namn!"
 
         val button =findViewById<Button>(R.id.nextButton)

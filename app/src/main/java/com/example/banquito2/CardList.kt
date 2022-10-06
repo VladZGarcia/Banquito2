@@ -2,14 +2,31 @@ package com.example.banquito2
 
 class CardList() {
     private val deck = mutableListOf<Cards>()
-
+     val piles = mutableListOf<Cards>()
     init {
         createDeck()
+        //createPile()
     }
+
         fun newRndCard() : Cards {
+            deck.shuffle()
         val rnd = (0 until deck.size).random()
             val rndCard = deck.removeAt(rnd)
         return rndCard
+    }
+
+    fun removePile() : Cards {
+
+        val rndPile = (0 until piles.size).random()
+        val newPile = piles.removeAt(rndPile)
+
+        return newPile
+    }
+    fun createPiles(buttonCard : Cards) {
+
+        piles.add(buttonCard)
+
+
     }
 
     fun createDeck() {

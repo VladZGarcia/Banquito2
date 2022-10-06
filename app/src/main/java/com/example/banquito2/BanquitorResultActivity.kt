@@ -19,6 +19,7 @@ class BanquitorResultActivity : AppCompatActivity() {
 
         infoTextView = findViewById(R.id.banquitoXTextView)
         val button = findViewById<Button>(R.id.Button)
+
         player1.name = intent.getStringExtra("nameP1")
         player1.money = intent.getIntExtra("moneyP1", 0)
         player1.bank = intent.getBooleanExtra("${player1.name} bank", false)
@@ -28,17 +29,32 @@ class BanquitorResultActivity : AppCompatActivity() {
             player.bank = intent.getBooleanExtra("${player.name} bank", false)
         }
 
-        var resultText ="${infoTextView.text}\n\n${player1.name} har ${player1.money} banquitos att spela för.\n"
+        var resultText ="${infoTextView.text}\n\n${player1.name} har ${player1.money} banquitos kvar.\n"
         infoTextView.text = resultText
 
         for (player in playerList.players) {
-            resultText ="\n${infoTextView.text}\n${player.name} har ${player.money} banquitos att spela för.\n"
+            resultText ="\n${infoTextView.text}\n${player.name} har ${player.money} banquitos kvar.\n"
             infoTextView.text = resultText
+            if(player.money == 0){
+
+
+            }
 
         }
-        resultText = "${infoTextView.text}\nTryck på knappen. "
-        infoTextView.text = resultText
+
+
         button.setOnClickListener {
+            for (player in playerList.players) {
+
+                if(player.money <= 0  ){
+                    resultText ="\n${player.name} har ${player.money} banquitos och är ute ur spelet.\n"
+                    infoTextView.text = resultText
+                    playerList.players.remove(player)
+
+
+                }
+
+            }
             val intent = Intent(this, BanquitoStartActivity::class.java)
 
             intent.putExtra("nameText", player1.name)
